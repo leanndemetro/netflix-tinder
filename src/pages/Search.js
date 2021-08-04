@@ -26,6 +26,29 @@ class Search extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
+    var axios = require("axios").default;
+    var options = {
+      method: 'GET',
+      url: 'https://streaming-availability.p.rapidapi.com/search/basic',
+      params: {
+        country: 'us',
+        service: 'hulu',
+        type: 'movie',
+        page: '2',
+        language: 'en'
+      },
+      headers: {
+        'x-rapidapi-key': 'c6de40e20emsh48dafed56a65e5fp1f6fc0jsnb087b3479bae',
+        'x-rapidapi-host': 'streaming-availability.p.rapidapi.com'
+      }
+    };
+
+    axios.request(options).then(function (response) {
+      console.log(response.data.results);
+    }).catch(function (error) {
+      console.error(error);
+    });
+
     API.getDogsOfBreed(this.state.search)
       .then(res => {
         if (res.data.status === "error") {
