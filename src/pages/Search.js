@@ -32,10 +32,11 @@ class Search extends Component {
       url: 'https://streaming-availability.p.rapidapi.com/search/basic',
       params: {
         country: 'us',
-        service: 'hulu',
+        service: 'netflix',
         type: 'movie',
         page: '2',
-        language: 'en'
+        language: 'en',
+        genre: '27'
       },
       headers: {
         'x-rapidapi-key': 'c6de40e20emsh48dafed56a65e5fp1f6fc0jsnb087b3479bae',
