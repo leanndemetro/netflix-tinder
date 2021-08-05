@@ -5,16 +5,18 @@ import Provider from '../Provider';
 function Genre(props) {
   // Declare a new state variable, which we'll call "count"
   const [genre, setGenre] = useState("");
+  const [provider, setProvider] = useState("");
 
-  var axios = require("axios").default;
+  console.log(genre, provider)
 
-
+  function axiosRequest() {
+    var axios = require("axios").default;
 var options = {
     method: 'GET',
     url: 'https://streaming-availability.p.rapidapi.com/search/basic',
     params: {
       country: 'us',
-      service: 'netflix',
+      service: provider,
       type: 'movie',
       genre: genre,
       page: '1',
@@ -32,6 +34,7 @@ var options = {
       console.error(error);
   });
 
+  }
 
 
   return (
@@ -69,8 +72,25 @@ var options = {
             <option value="10767">Talk Show</option>
           </select>
 
-          <Provider />
+          <select className="providerDropdown"
+      value={provider}
+      onChange={e => setProvider(e.currentTarget.value)}>
+            <option value="apple">Apple</option>
+            <option value="disney">Disney</option>
+            <option value="hbo">Hbo</option>
+            <option value="hulu">Hulu</option>
+            <option value="mubi">Mubi</option>
+            <option value="netflix">Netflix</option>
+            <option value="paramount">Paramount</option>
+            <option value="peacock">Peacock</option>
+            <option value="showtime">Showtime</option>
+            <option value="starz">Starz</option>
+          </select>
+          <br></br>
+          <button onClick={axiosRequest}>GO</button>
     </div>
+
+
   );
 }
 
