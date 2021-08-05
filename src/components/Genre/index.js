@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import './style.css'
+import Provider from '../Provider';
 
 function Genre() {
   // Declare a new state variable, which we'll call "count"
@@ -9,7 +11,7 @@ console.log(genre);
 
   return (
     <div>
-      <select
+      <select className="genreDropdown"
       value={genre}
       onChange={e => setGenre(e.currentTarget.value)}>
             <option value="1">Biography</option>
@@ -41,6 +43,8 @@ console.log(genre);
             <option value="10764">Reality</option>
             <option value="10767">Talk Show</option>
           </select>
+
+          <Provider />
     </div>
   );
 }
