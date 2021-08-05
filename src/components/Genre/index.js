@@ -2,10 +2,35 @@ import React, { useState } from 'react';
 import './style.css'
 import Provider from '../Provider';
 
-function Genre() {
+function Genre(props) {
   // Declare a new state variable, which we'll call "count"
   const [genre, setGenre] = useState("");
-console.log(genre);
+
+  var axios = require("axios").default;
+
+
+var options = {
+    method: 'GET',
+    url: 'https://streaming-availability.p.rapidapi.com/search/basic',
+    params: {
+      country: 'us',
+      service: 'netflix',
+      type: 'movie',
+      genre: genre,
+      page: '1',
+      language: 'en'
+    },
+    headers: {
+      'x-rapidapi-key': 'c6de40e20emsh48dafed56a65e5fp1f6fc0jsnb087b3479bae',
+      'x-rapidapi-host': 'streaming-availability.p.rapidapi.com'
+    }
+  };
+  
+  axios.request(options).then(function (response) {
+      console.log(response.data);
+  }).catch(function (error) {
+      console.error(error);
+  });
 
 
 
