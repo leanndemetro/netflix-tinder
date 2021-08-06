@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import './style.css'
-import Card from '../Card';
+import CardBtn from '../CardBtn';
 
 
-function Genre(props) {
+function Genre() {
     // Declare a new state variable, which we'll call "count"
     const [genre, setGenre] = useState("");
     const [provider, setProvider] = useState("");
     const [title, setTitle] = useState("Choose a genre and provider");
     const [image, setImage] = useState("https://i.imgur.com/NbH9CMf.jpg");
     const [type, setType] = useState("");
+    const [itemNumber, setItemNumber] = useState("0");
 
     console.log(genre, provider)
 
@@ -34,8 +35,8 @@ function Genre(props) {
 
         axios.request(options).then(function (response) {
             var returnedList = response.data
-            setImage(returnedList.results[0].posterURLs.original);
-            setTitle(returnedList.results[0].title);
+            setImage(returnedList.results[itemNumber].posterURLs.original);
+            setTitle(returnedList.results[itemNumber].title);
 
 
         }).catch(function (error) {
@@ -43,6 +44,8 @@ function Genre(props) {
         });
 
     }
+
+   
 
     return (
         <div className="text-center">
@@ -112,8 +115,21 @@ function Genre(props) {
                     className="card"
                 >
                     <img className="cardImage" src={image}></img>
+                    <button  
+                    type="submit"
+      className="card-btn pass"
+    />
+            <button  
+            type="submit"
+      className="card-btn pick" 
+   
+     
+    />
                 </div>
+                
             </div>
+           
+            
 
         </div>
 
