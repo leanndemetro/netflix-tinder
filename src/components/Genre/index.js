@@ -6,7 +6,7 @@ import CardBtn from '../CardBtn';
 function Genre() {
     const [genre, setGenre] = useState("1");
     const [provider, setProvider] = useState("apple");
-    const [image, setImage] = useState("https://i.imgur.com/NbH9CMf.jpg");
+    const [image, setImage] = useState("https://i.imgur.com/8Ry23Uo.jpg");
     const [type, setType] = useState("movie");
     const [itemNumber, setItemNumber] = useState("0");
     const [pageNumber, setPageNumber] = useState("1");
@@ -57,7 +57,7 @@ function Genre() {
     }
 
     function dataHasNoValue() {
-        setImage("https://i.imgur.com/NbH9CMf.jpg")
+        setImage("https://i.imgur.com/SgVHskG.jpg")
        
     }
 
