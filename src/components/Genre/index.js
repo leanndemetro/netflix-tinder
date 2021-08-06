@@ -85,7 +85,7 @@ function Genre() {
     return (
         <div className="text-center">
             <br></br>
-            <select className="genreDropdown"
+            <select className="genreDropdown dropdown"
                 value={genre}
                 onChange={e => setGenre(e.currentTarget.value)}>
                 <option value="1">Biography</option>
@@ -118,7 +118,7 @@ function Genre() {
                 <option value="10767">Talk Show</option>
             </select>
 
-            <select className="providerDropdown"
+            <select className="providerDropdown dropdown"
                 value={provider}
                 onChange={e => setProvider(e.currentTarget.value)}>
                 <option value="apple">Apple</option>
@@ -134,15 +134,13 @@ function Genre() {
             </select>
             <br></br>
             <br></br>
-            <select className="typeDropdown"
+            <select className="typeDropdown dropdown"
                 value={type}
                 onChange={e => setType(e.currentTarget.value)}>
                 <option value="movie">Movie</option>
                 <option value="series">Series</option>
             </select>
-            <br></br>
-            <br></br>
-            <button onClick={axiosRequest}>GO</button>
+            <button className="goButton" onClick={axiosRequest}>Search Now</button>
             <div>
                 <div
                     className="card"

@@ -3,5 +3,9 @@ nav.navbar.navbar-default {
 }
 
 .navbar-brand {
-  margin-left: 10px;
+  margin-left: 20px;
+}
+
+.nav-item {
+  margin-right: 20px;
 }
