@@ -40,6 +40,10 @@
     margin-left: 10px;
 }
 
+.goButton:hover {
+    background-color:rgba(39, 37, 37, 0.5);
+}
+
 .card-btn {
     border-radius: 50%;
     height: 50px;
