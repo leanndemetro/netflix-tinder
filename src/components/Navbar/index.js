@@ -7,7 +7,7 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link className="navbar-brand" to="/">
-        Movie Tinder
+       What Are We Watching?
       </Link>
       <div>
         <ul className="navbar-nav">
