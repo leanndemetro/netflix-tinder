@@ -14,9 +14,9 @@ function App() {
       <div>
         <Navbar />
         <Wrapper>
-          <Route exact path="/" component={About} />
+          <Route exact path="/" component={Genre} />
           <Route exact path="/about" component={About} />
-          <Route exact path="/discover" component={Discover} />
+          <Route exact path="/discover" component={Genre} />
           <Route exact path="/search" component={Search} />
           <Route exact path="/genre" component={Genre} />
         </Wrapper>
