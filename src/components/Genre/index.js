@@ -33,6 +33,7 @@ function Genre() {
         };
 
         axios.request(options).then(function (response) {
+            // 429 error -- try response.data.results.title tomorrow!
             if (response.data.results.length === 0) {
                 dataHasNoValue();
             }
