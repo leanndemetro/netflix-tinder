@@ -5,11 +5,11 @@ import CardBtn from '../CardBtn';
 
 function Genre() {
     // Declare a new state variable, which we'll call "count"
-    const [genre, setGenre] = useState("");
-    const [provider, setProvider] = useState("");
+    const [genre, setGenre] = useState("1");
+    const [provider, setProvider] = useState("apple");
     const [title, setTitle] = useState("Choose a genre and provider");
     const [image, setImage] = useState("https://i.imgur.com/NbH9CMf.jpg");
-    const [type, setType] = useState("");
+    const [type, setType] = useState("movie");
     const [itemNumber, setItemNumber] = useState("0");
 
     console.log(genre, provider)
@@ -34,10 +34,13 @@ function Genre() {
         };
 
         axios.request(options).then(function (response) {
-            var returnedList = response.data
-            setImage(returnedList.results[itemNumber].posterURLs.original);
-            setTitle(returnedList.results[itemNumber].title);
-
+            if (response.data.results.length === 0) {
+                dataHasNoValue();
+            }
+            else {
+                var returnedList = response.data
+                dataHasValue(returnedList);
+            }
 
         }).catch(function (error) {
             console.error(error);
@@ -45,7 +48,17 @@ function Genre() {
 
     }
 
-   
+    function dataHasValue(returnedList) {
+        setImage(returnedList.results[itemNumber].posterURLs.original);
+        setTitle(returnedList.results[itemNumber].title);
+
+    }
+
+    function dataHasNoValue() {
+        setImage("https://i.imgur.com/NbH9CMf.jpg")
+        setTitle("no results")
+    }
+
 
     return (
         <div className="text-center">
@@ -115,21 +128,21 @@ function Genre() {
                     className="card"
                 >
                     <img className="cardImage" src={image}></img>
-                    <button  
-                    type="submit"
-      className="card-btn pass"
-    />
-            <button  
-            type="submit"
-      className="card-btn pick" 
-   
-     
-    />
+                    <button
+                        type="submit"
+                        className="card-btn pass"
+                    />
+                    <button
+                        type="submit"
+                        className="card-btn pick"
+
+
+                    />
                 </div>
-                
+
             </div>
-           
-            
+
+
 
         </div>
 
