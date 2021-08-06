@@ -9,3 +9,7 @@ nav.navbar.navbar-default {
 .nav-item {
   margin-right: 20px;
 }
+
+.heartIcon {
+  float: right;
+}
