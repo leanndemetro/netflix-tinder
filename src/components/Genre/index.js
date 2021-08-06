@@ -4,7 +4,6 @@ import CardBtn from '../CardBtn';
 
 
 function Genre() {
-    // Declare a new state variable, which we'll call "count"
     const [genre, setGenre] = useState("1");
     const [provider, setProvider] = useState("apple");
     const [title, setTitle] = useState("Choose a genre and provider");
@@ -12,7 +11,7 @@ function Genre() {
     const [type, setType] = useState("movie");
     const [itemNumber, setItemNumber] = useState("0");
 
-    console.log(genre, provider)
+    // console.log(genre, provider)
 
     function axiosRequest() {
         var axios = require("axios").default;
@@ -58,6 +57,21 @@ function Genre() {
         setImage("https://i.imgur.com/NbH9CMf.jpg")
         setTitle("no results")
     }
+
+    function passClick() {
+        if (itemNumber < 8) {
+            setItemNumber(Number(itemNumber) + 1)
+            axiosRequest();
+        }
+
+
+    }
+    // function pickClick() {
+    //     if (itemNumber < 8) {
+    //         setItemNumber(Number(itemNumber) + 1)
+    //         axiosRequest();
+    //     }
+    // }
 
 
     return (
@@ -129,12 +143,12 @@ function Genre() {
                 >
                     <img className="cardImage" src={image}></img>
                     <button
-                        type="submit"
                         className="card-btn pass"
+                        onClick={passClick}
                     />
                     <button
-                        type="submit"
                         className="card-btn pick"
+                        onClick={passClick}
 
 
                     />
