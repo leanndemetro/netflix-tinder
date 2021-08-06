@@ -9,6 +9,7 @@ function Genre(props) {
     const [provider, setProvider] = useState("");
     const [title, setTitle] = useState("Choose a genre and provider");
     const [image, setImage] = useState("https://i.imgur.com/NbH9CMf.jpg");
+    const [type, setType] = useState("");
 
     console.log(genre, provider)
 
@@ -20,7 +21,7 @@ function Genre(props) {
             params: {
                 country: 'us',
                 service: provider,
-                type: 'movie',
+                type: type,
                 genre: genre,
                 page: '1',
                 language: 'en'
@@ -92,6 +93,14 @@ function Genre(props) {
                 <option value="peacock">Peacock</option>
                 <option value="showtime">Showtime</option>
                 <option value="starz">Starz</option>
+            </select>
+            <br></br>
+            <br></br>
+            <select className="typeDropdown"
+                value={type}
+                onChange={e => setType(e.currentTarget.value)}>
+                <option value="movie">Movie</option>
+                <option value="series">Series</option>
             </select>
             <br></br>
             <br></br>
