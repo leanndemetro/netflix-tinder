@@ -143,8 +143,7 @@ function Genre() {
             <br></br>
             <br></br>
             <button onClick={axiosRequest}>GO</button>
-            <br></br>
-            <br></br><div>
+            <div>
                 <div
                     className="card"
                 >
