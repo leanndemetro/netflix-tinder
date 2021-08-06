@@ -6,10 +6,11 @@ import CardBtn from '../CardBtn';
 function Genre() {
     const [genre, setGenre] = useState("1");
     const [provider, setProvider] = useState("apple");
-    const [title, setTitle] = useState("Choose a genre and provider");
     const [image, setImage] = useState("https://i.imgur.com/NbH9CMf.jpg");
     const [type, setType] = useState("movie");
     const [itemNumber, setItemNumber] = useState("0");
+    const [pageNumber, setPageNumber] = useState("1");
+
 
     // console.log(genre, provider)
 
@@ -23,7 +24,7 @@ function Genre() {
                 service: provider,
                 type: type,
                 genre: genre,
-                page: '1',
+                page: pageNumber,
                 language: 'en'
             },
             headers: {
@@ -49,19 +50,25 @@ function Genre() {
     }
 
     function dataHasValue(returnedList) {
+        console.log(returnedList);
         setImage(returnedList.results[itemNumber].posterURLs.original);
-        setTitle(returnedList.results[itemNumber].title);
+       
 
     }
 
     function dataHasNoValue() {
         setImage("https://i.imgur.com/NbH9CMf.jpg")
-        setTitle("no results")
+       
     }
 
     function passClick() {
-        if (itemNumber < 8) {
+        if (itemNumber < 7) {
             setItemNumber(Number(itemNumber) + 1)
+            axiosRequest();
+        }
+        else {
+            setPageNumber(Number(pageNumber) + 1)
+            setItemNumber("0")
             axiosRequest();
         }
 
@@ -138,7 +145,6 @@ function Genre() {
             <button onClick={axiosRequest}>GO</button>
             <br></br>
             <br></br><div>
-                <h1 className="text-center">{title}</h1>
                 <div
                     className="card"
                 >
