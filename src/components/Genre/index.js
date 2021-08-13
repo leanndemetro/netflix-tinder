@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './style.css'
+import { BiCameraMovie } from 'react-icons/bi';
 
 
 function Genre() {
@@ -83,6 +84,7 @@ function Genre() {
 
     return (
         <div className="text-center">
+
             <br></br>
             <select className="genreDropdown dropdown"
                 value={genre}
