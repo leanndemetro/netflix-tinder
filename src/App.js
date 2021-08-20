@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper";
 import Discover from "./pages/Discover";
 import Signup from "./pages/Signup";
+import SigninForm from "./components/SigninForm";
 
 class App extends Component {
   state = {
@@ -35,6 +36,7 @@ class App extends Component {
         <Wrapper>
           <Route exact path="/discover" component={Discover} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/login" component={SigninForm} />
         </Wrapper>
         <Footer />
       </div>
