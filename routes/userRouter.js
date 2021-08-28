@@ -40,10 +40,14 @@ router.post("/signup", async (req, res) => {
         });
 
         const savedUser = await newUser.save();
-        res.json(savedUser);
+        res.redirect(
+            '/signin'
+         );
     }
     catch (error) {
-        res.status(500).json({ err: error.message});
+        res.redirect(
+            '/signup'
+         );
     }
 });
 
@@ -61,7 +65,7 @@ router.post("/login", async (req,res) => {
         if (!user) {
             return res
             .status(400)
-            .json({ msg: "User already exists." });
+            .json({ msg: "User does not exist." });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
@@ -72,15 +76,9 @@ router.post("/login", async (req,res) => {
         }
 
         const token = jwt.sign({ id: user._id}, process.env.JWT_SECRET);
-        res.json({
-            token,
-            user: {
-                id: user._id,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                email: user.email,
-            },
-        });
+        res.redirect(
+           '/discover'
+        );
     } catch (error) {
         res.status(500).json({ err: error.message });
     }

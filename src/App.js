@@ -36,7 +36,7 @@ class App extends Component {
         <Wrapper>
           <Route exact path="/discover" component={Discover} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/login" component={SigninForm} />
+          <Route exact path="/signin" component={SigninForm} />
         </Wrapper>
         <Footer />
       </div>
