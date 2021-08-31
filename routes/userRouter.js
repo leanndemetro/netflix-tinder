@@ -76,9 +76,8 @@ router.post("/login", async (req,res) => {
         }
 
         const token = jwt.sign({ id: user._id}, process.env.JWT_SECRET);
-        res.redirect(
-           '/discover'
-        );
+        res.cookie("jwt", token, {httpOnly: true, maxAge: 1000 * 24 * 60 * 60});
+        res.json({user: user._id});
     } catch (error) {
         res.status(500).json({ err: error.message });
     }
