@@ -20,7 +20,7 @@
 <h2>Description:</h2>
 <p>A Tinder style application in which users can like or dislike movies and tv shows from their favorite providers, and compare with friends in order to assist in picking what to watch together - this application is still in development</p>
 
-<p>Built using React, JavaScript, Mongoose, JWTTokens, Bcrypt, cookie-parser, the streaming avaiability API, and other technologies.</p>
+<p>Built using React, JavaScript, Mongoose, JWTTokens, Bcrypt, cookie-parser, the Streaming Availability API, and other technologies.</p>
 
 <h2>Installation:</h2>
 <p>npm install, npm start</p>
