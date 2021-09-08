@@ -40,8 +40,8 @@ router.post("/signup", async (req, res) => {
         });
 
         const savedUser = await newUser.save();
-        res.redirect(
-            '/signin'
+        res.send(
+        savedUser
          );
     }
     catch (error) {
@@ -59,7 +59,7 @@ router.post("/login", async (req,res) => {
             return res
             .status(400)
             .json({ msg: "Not all fields have been entered"});
-        }
+        } 
 
         const user = await User.findOne({ email: email });
         if (!user) {
@@ -77,7 +77,7 @@ router.post("/login", async (req,res) => {
 
         const token = jwt.sign({ id: user._id}, process.env.JWT_SECRET);
         res.cookie("jwt", token, {httpOnly: true, maxAge: 1000 * 24 * 60 * 60});
-        res.redirect("/discover");
+        res.send(token);
         
     } catch (error) {
         res.status(500).json({ err: error.message });
