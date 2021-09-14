@@ -4,8 +4,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const auth = require("../middleware/auth");
 
-
-router.post("/signup", async (req, res) => {
+router.post("/register", async (req, res) => {
     try {
         const { firstName, lastName, email, password, userCreated } = req.body;
 
@@ -76,8 +75,15 @@ router.post("/login", async (req,res) => {
         }
 
         const token = jwt.sign({ id: user._id}, process.env.JWT_SECRET);
-        res.cookie("jwt", token, {httpOnly: true, maxAge: 1000 * 24 * 60 * 60});
-        res.send(token);
+        console.log("token", token);
+        res.json({
+          token,
+          user: {
+            id: user._id,
+            firstName: user.firstName,
+          },
+        });
+        
         
     } catch (error) {
         res.status(500).json({ err: error.message });

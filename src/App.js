@@ -1,48 +1,55 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Wrapper from "./components/Wrapper";
-import Discover from "./pages/Discover";
-import Signup from "./pages/Signup";
-import SigninForm from "./components/SigninForm";
+import React, {useState, useEffect } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import axios from 'axios';
+import Navbar from './components/Navbar';
+import Home from './pages/Home/Home';
+import Signup from "./pages/Signup"
+import Signin from "./pages/Signin"
+import UserContext from './context/userContext';
+import Discover from './pages/Discover';
 
-class App extends Component {
-  state = {
-    data: null
-  };
+function App() {
 
-  componentDidMount() {
-    this.callBackendAPI()
-      .then(res => this.setState({ data: res.express }))
-      .catch(err => console.log(err));
-  }
-    // fetching the GET route from the Express server which matches the GET route from server.js
-  callBackendAPI = async () => {
-    const response = await fetch('/express_backend');
-    const body = await response.json();
+  const [ userData, setUserData] = useState({
+    token: undefined,
+    user: undefined
+  });
 
-    if (response.status !== 200) {
-      throw Error(body.message) 
+  useEffect(() => {
+    const checkLoggedIn = async () => {
+      let token = localStorage.getItem("auth-token");
+      if(token === null){
+        localStorage.setItem("auth-token", "");
+        token = "";
+      }
+      const tokenResponse = await axios.post('http://localhost:5000/users/tokenIsValid', null, {headers: {"x-auth-token": token}});
+      if (tokenResponse.data) {
+        const userRes = await axios.get("http://localhost:5000/users/", {
+          headers: { "x-auth-token": token },
+        });
+        setUserData({
+          token,
+          user: userRes.data,
+        });
+      }
     }
-    return body;
-  }; 
 
-  render() {
+    checkLoggedIn();
+  }, []);
+
   return (
-    <Router>
-      <div>
-        <Navbar />
-        <Wrapper>
-          <Route exact path="/discover" component={Discover} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/signin" component={SigninForm} />
-        </Wrapper>
-        <Footer />
-      </div>
-    </Router>
+    <BrowserRouter>
+    <UserContext.Provider value={{ userData, setUserData }}>
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/signin" component={Signin} />
+        <Route path="/discover" component={Discover} />
+      </Switch>
+      </UserContext.Provider>
+  </BrowserRouter>
   );
   }
-}
 
 export default App;
