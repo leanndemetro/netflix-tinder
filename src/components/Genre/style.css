@@ -102,6 +102,8 @@
   .pick:hover::after, .pass:hover::after {
     animation: iconBounce .57s 1;
   }
+
+
   
   @keyframes iconBounce {
     0% {

@@ -157,9 +157,9 @@ function Genre() {
 
                     />
                 </div>
+                
 
             </div>
-
 
 
         </div>

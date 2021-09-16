@@ -18,6 +18,51 @@ function Navbar() {
   };
 
   return (
+    <span>
+    {userData.user ? (
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <Link className="navbar-brand" to="/">
+         What Are We Watching?
+        </Link>
+        <div>
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link
+                to="/discover"
+                className={window.location.pathname === "/discover" ? "nav-link active" : "nav-link"}
+              >
+                Discover
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/signin"
+                className={window.location.pathname === "/signin" ? "nav-link active" : "nav-link"}
+              >
+                Sign In
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/signup"
+                className={window.location.pathname === "/signup" ? "nav-link active" : "nav-link"}
+              >
+                Sign Up 
+              </Link>
+              </li>
+              <li>
+              <Link
+                to="/"
+                className={window.location.pathname === "/" ? "nav-link active" : "nav-link"}
+                onClick={logout} >
+                Log Out 
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+       ) : (
+         
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link className="navbar-brand" to="/">
        What Are We Watching?
@@ -48,17 +93,13 @@ function Navbar() {
               Sign Up 
             </Link>
             </li>
-            <li>
-            <Link
-              to="/"
-              className={window.location.pathname === "/" ? "nav-link active" : "nav-link"}
-              onClick={logout} >
-              Log Out 
-            </Link>
-          </li>
         </ul>
       </div>
     </nav>
+    
+     )}
+  </span>
+
   );
 }
 

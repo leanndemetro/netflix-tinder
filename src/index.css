@@ -14,4 +14,5 @@ div[data-reactroot] {
   margin: 0;
   background-color: black;
   font-family: 'Poppins', sans-serif;
+  min-height: 100%;
 }
